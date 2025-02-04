@@ -45,6 +45,14 @@
     after you are done troubleshooting.
 </p>
 
+<p>To test this origin with curl:</p>
+<pre>
+curl -I -X OPTIONS \
+  -H "Origin: https://cbusweb.github.io/" \
+  -H 'Access-Control-Request-Method: GET' \
+  http://forms.bgsu.edu/API/user 2>&1 | grep 'Access-Control-Allow-Origin'
+</pre>
+
 <script src='https://js.jotform.com/JotForm.js'></script>
 <script>
     function getStarted() {
