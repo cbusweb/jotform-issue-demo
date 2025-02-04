@@ -1,0 +1,57 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1> Jotform Test</h1>
+
+<p>
+    This example uses the Jotform Javascript SDK against jotform.com to:
+</p>
+
+<ul>
+    <li>
+        Open a pop-up window prompting the user to authenticate.
+    </li>
+    <li>
+        After authenticating, the user is prompted to authorize this Jotform app.
+    </li>
+    <li>
+        After authorization, the results box will be populated with user information from the API.
+    </li>
+</ul>
+
+<button onclick="getStarted()" style="padding:0.5em">Get Started</button>
+<a style="margin-left: 1em;" href="./bgsuforms.html">Switch to BGSU Example</a>
+
+<h2>Results</h2>
+<pre id="results" style="padding: 1em; border: 1px solid #CCC; background-color: #EEE;">
+
+</pre>
+<p>
+    Please <a target="_blank" href="https://www.jotform.com/myaccount/api">unauthorize this app</a>
+    after you are done troubleshooting.
+</p>
+
+<script src='https://js.jotform.com/JotForm.js'></script>
+<script>
+    function getStarted() {
+        JF.initialize({
+            appName: 'JotForm C-Bus Demo',
+            accessType: 'readOnly',
+        });
+
+        JF.login(
+            function success(){
+                JF.getUser(function(response){
+                    document.getElementById('results').innerHTML = JSON.stringify(response, null, 2);
+                });
+            },
+            function error(){
+                window.alert("Could not authorize user");
+            }
+        );
+    }
+</script>
+</body>
+</html>

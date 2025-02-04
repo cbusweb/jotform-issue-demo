@@ -1,0 +1,70 @@
+<html>
+<head>
+
+</head>
+<body>
+<h1> Forms.BGSU.edu Test</h1>
+<p>
+    This example uses the Jotform Javascript SDK against forms.bgsu.edu to:
+</p>
+
+<ul>
+    <li>
+        Open a pop-up window prompting the user to authenticate.
+    </li>
+    <li>
+        After authenticating, the user is prompted to authorize this Jotform app.
+    </li>
+    <li>
+        After authorization, the results box should be populated with user information from the API.
+        However, instead we get a CORs error (visible in the browser console).
+    </li>
+</ul>
+
+<p>
+    <strong>WARNING:</strong> BGSU single sign on redirections break the pop-up login.
+    This is not the problem we care about, but to get past this you
+    <strong>MUST</strong> authenticate to <a target="_blank" href="https://forms.bgsu.edu">forms.bgsu.edu</a>
+    <strong>BEFORE</strong> clicking the button.
+</p>
+
+<button onclick="getStarted()" style="padding:0.5em">Get Started</button>
+<a style="margin-left: 1em;" href="./jotform.html">Switch to Jotform</a>
+
+<h2>Results</h2>
+<pre id="results" style="padding: 1em; border: 1px solid #CCC; background-color: #EEE;">
+
+</pre>
+<p>
+    Please <a target="_blank" href="https://forms.bgsu.edu/myaccount/api">unauthorize this app</a>
+    after you are done troubleshooting.
+</p>
+
+<script src='https://js.jotform.com/JotForm.js'></script>
+<script>
+    function getStarted() {
+        JF.initialize({
+            appName: 'JotForm C-Bus Demo BGSU',
+            baseUrl: '//forms.bgsu.edu',
+            requestUrl: '//forms.bgsu.edu/API',
+            authPath: '/api/oauth.php',
+            accessType: 'readOnly',
+        });
+
+        JF.login(
+            function success(){
+                JF.getUser(function(response){
+                    document.getElementById('results').innerHTML = JSON.stringify(response, null, 2);
+                });
+            },
+            function error(){
+                window.alert("Could not authorize user");
+            }
+        );
+    }
+</script>
+</body>
+</html>
+
+
+
