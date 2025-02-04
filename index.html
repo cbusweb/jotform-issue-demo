@@ -3,7 +3,24 @@
     <meta charset="utf-8">
 </head>
 <body>
+<div style="float:right;">
+    <a href="./jotform.html">Jotform Example</a>
+    | <a href="./bgsuforms.html">BGSU Example</a>
+</div>
     <h1>Jotform API - Issue Demo</h1>
+    <h2>Summary</h2>
+    <p>
+        Using the <a target="_blank" href="https://api.jotform.com/docs/#libraries:~:text=Authenticate%20with%20Javascript%20SDK">Jotform JavaScript SDK</a>
+        against Jotform.com works fine.
+    </p>
+    <p>
+        However, using it against <a href="https://forms.bgsu.edu">forms.bgsu.edu</a> fails with CORS errors.
+    </p>
+    <p>
+        Called outside a browser context (no CORS), the API works fine for forms.bgsu.edu.
+    </p>
+
+    <h2>Examples</h2>
     <p>
         We have two nearly identical pages designed to test the Jotform
         <a target="_blank" href="https://api.jotform.com/docs/#libraries:~:text=Authenticate%20with%20Javascript%20SDK">JavaScript SDK</a>.
@@ -17,7 +34,24 @@
         </li>
     </ul>
     <p>
-        Both examples use the
+        Both examples prompt the user to authenticate and authorize the app.
+        This appears to work successfully.
     </p>
+    <p>
+        Next, they try to fetch user information over the API. While the jotform.com
+        variant works, the forms.bgsu.edu variant fails with CORs errors.
+        This indicates that even though the application has been approved,
+        the origin is not being allowed.
+    </p>
+
+    <h2>What is CORS</h2>
+    <p>
+        Cross-Origin Resource Sharing (CORS) is a security mechanism that allows web browsers
+        to access resources from other domains. CORS is used to prevent malicious websites
+        from accessing data on other sites without permission.
+
+        <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">Read more on CORS</a>
+    </p>
+
 </body>
 </html>
