@@ -48,6 +48,8 @@
             function success(){
                 JF.getUser(function(response){
                     document.getElementById('results').innerHTML = JSON.stringify(response, null, 2);
+                }, function () {
+                    document.getElementById('results').innerHTML = 'Check your browser console for a CORS error.';
                 });
             },
             function error(){
